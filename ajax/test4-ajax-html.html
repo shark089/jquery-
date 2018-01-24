@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>無標題文件</title>
+<script src="bootstrap and jquery/jquery-3.2.0.min.js"></script>
+<script>
+	$(function(){
+		$.get('http://httpbin.org/xml',function(xml){
+			$(xml).find('slide').each(function(){
+				var li = $('<li></li>').text($(this).find('title').text());
+				if($(this).find('item').length>0){
+					var ul = $('<ul></ul>');
+					$(this).find('item').each(function(){
+						if($(this).text() !=''){
+							ul.append($('<li>'+$(this).text()+'<li>'));
+						}
+					});
+					li.append(ul);
+				}
+				$('#list').append(li);
+			})
+		})
+	})
+</script>
+</head>
+
+<body>
+	<h3>練習</h3>
+	<ol id="list"></ol>
+</body>
+</html>
