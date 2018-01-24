@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>無標題文件</title>
+<script src="bootstrap and jquery/jquery-3.2.0.min.js"></script>
+<script>
+	$(function(){
+		var table = $('<table border="1"></table>');
+		$.getJSON('http://httpbin.org/headers',function(data){
+			$.each(data.headers,function(property,value){
+				var th = $('<th></th>').text(property);
+				var td = $("<td></td>").text(value);
+				var row = $('<tr></tr>').append(th).append(td);
+				table.append(row);
+				$('body').append(table);
+			});
+		});
+	});
+</script>
+</head>
+
+<body>
+	<h3>
+		顯示HTTP表頭資訊
+	</h3>
+</body>
+</html>
